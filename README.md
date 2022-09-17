@@ -1,1 +1,4 @@
-# Parfitt_LDP_prod_repro_SmartForests
+# Smart Forest Code 
+## Productivity and Reproducibility - Living Data Project
+
+Code developed to demostrate concepts learned in the course, and for assignments
