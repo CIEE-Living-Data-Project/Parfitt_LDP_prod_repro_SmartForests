@@ -1,6 +1,7 @@
 # Smart Forest Code 
-## Productivity and Reproducibility - Living Data Project
+# Author: Ian Parfitt
+## Productivity and Reproducibility in Ecology and Evolution- Living Data Project (LDP), 2022
 
-Code developed to demostrate concepts learned in the course, and for assignments
+Code developed to demonstrate concepts learned in the course, and for assignments.
 
-"This project is being reviewed by Rolando Trejo"
+"This project is being reviewed by Rolando Trejo Pérez"
