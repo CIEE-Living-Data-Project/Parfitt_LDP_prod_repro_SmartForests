@@ -3,4 +3,4 @@
 
 Code developed to demostrate concepts learned in the course, and for assignments
 
-"This project is being reviewed by Rolando Trejo"
+"This project is being reviewed by Rolando Trejo-Pérez"
