@@ -1,0 +1,127 @@
+---
+title: How does tree harvest influence benthic invertebrate density?
+author:
+  - name: Sam Straus
+    email: samantha.straus@mcgill.ca
+    affiliation: McGill University
+    correspondingauthor: true
+    footnote: 1
+  - name: Bob Security
+    email: bob@example.com
+    affiliation: Another University
+  - name: Cat Memes
+    email: cat@example.com
+    affiliation: Another University
+    footnote: 2
+  - name: Derek Zoolander
+    email: derek@example.com
+    affiliation: Some Institute of Technology
+    footnote: 2
+address:
+  - code: Some Institute of Technology
+    address: Department, Street, City, State, Zip
+  - code: Another University
+    address: Department, Street, City, State, Zip
+abstract: |
+  We looked at the density of Baetis spp. in harvested and non-harvested stream catchments.
+keywords: 
+  - stream ecology
+  - entomology
+journal: "Ecological Entomology"
+date: "`r Sys.Date()`"
+classoption: preprint, 3p, authoryear
+bibliography: mybibfile.bib
+linenumbers: true
+numbersections: true
+# Use a CSL with `citation_package = "default"`
+# csl: https://www.zotero.org/styles/elsevier-harvard
+output: 
+  rticles::elsevier_article:
+    keep_tex: true
+    citation_package: natbib
+header-includes:
+ \usepackage{float}
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H')
+```
+
+```{r setup, include=FALSE}
+# I'm using R-4.0.5, so using date of 2021-05-17
+library(groundhog)
+groundhog.library(tidyverse, date = "2021-05-17")
+groundhog.library(ggplot2, date = "2021-05-17")
+groundhog.library(cowplot, date = "2021-05-17")
+```
+
+# Introduction
+
+*Baetis* spp, belonging to the insect order Ephemeroptera, are commonly used as stream quality indicators [@wallace1986response].
+
+# Methods
+
+Researchers collected data on the number of *Baetis* spp. per square meter in the benthic environment of various catchments from 1995 to 2005. Some of the catchments were harvested, while others were not.
+
+# Results
+
+Figure \ref{fig1} is generated using an R chunk.
+
+```{r, include=FALSE}
+dir.create("../data/")
+# create README.md file for directory
+## File > New File > Markdown File
+# download turkey lakes watershed invertebrate density data
+invert.density.url <- "https://ftp.maps.canada.ca/pub//nrcan_rncan/Forests_Foret/TLW/TLW_invertebrateDensity.csv"
+invert.density.destfile <- "/Users/sam/LDP/PROD_REPRO/straus_PREE_Mock_article/data/NRCAN_1995-2009_TLW_density.csv"
+## certificate issue
+# curl stands for client URL
+# -k means don't verify cert
+## USE WITH CAUTION!!
+download.file(invert.density.url, invert.density.destfile, method = "curl", extra = "-k")
+# download associated metadata
+invert.metadata.url <- "https://ftp.maps.canada.ca/pub//nrcan_rncan/Forests_Foret/TLW/TLW_invertebrate_metaEN.csv"
+invert.metadata.destfile <- "/Users/sam/LDP/PROD_REPRO/straus_PREE_Mock_article/data/NRCAN_1995-2009_TLW_metadata.csv"
+download.file(invert.metadata.url, invert.metadata.destfile, method = "curl", extra = "-k")
+dat <- read.csv("../data/NRCAN_1995-2009_TLW_density.csv")
+table(dat$catchment)
+## catchments 31, 33, and 34 were the ones that experienced forest harvest, create new column
+dat <- dat %>% mutate(harvest = if_else(catchment == "33" | catchment == "34L" | catchment == "34M" | 
+                                   catchment == "34U", true = "yes", false = "no"))
+table(dat$harvest)
+# for the purposes of this mock assignment, let's just stick on with one genus: Baetis (a genus of mayfly, the order of which are stream quality indicators 
+head(dat)
+baetis <- dat %>% select(catchment, year, month, replicate, Baetis, harvest)
+baetis.sum <- baetis %>% group_by(catchment, year, month, harvest) %>% summarize(mean.dens = mean(Baetis))
+## need date format to plot as a time series
+table(baetis.sum$month)
+baetis.sum <- baetis.sum %>% mutate(month2 = if_else(month == "june", "06", if_else(month == "may", "05", 
+                      if_else(month == "november", "11", if_else(month =="october", "10",
+                      if_else(month == "september", "09", "0"))))))
+# unite month and year
+baetis.sum <- baetis.sum %>% unite(col = "year.month", year, month2, sep = "-")
+## adding a day to get into yyyy-mm-dd format that R likes, the data file does not specify the day, so we're just going to use the first of the month
+baetis.sum <- baetis.sum %>% mutate(ymd = as.Date(paste(year.month,"-01",sep="")))
+## double check that are actually in a date format
+str(baetis.sum$ymd) # nice!
+# check out distribution
+hist(baetis.sum$mean.dens)
+hist(log10(baetis.sum$mean.dens))
+p <- ggplot(baetis.sum, aes(x=ymd, y=mean.dens, color = harvest)) +
+  geom_line() + 
+  xlab("Year")+
+  ylab("Mean density (# per sq. m)")+
+  scale_y_log10()+
+  theme_cowplot()
+p
+```
+
+```{r fig1, fig.width = 5, fig.height = 3, fig.align='center', out.width="75%", fig.cap = "\\label{fig1}Baetis density in harvested and non-harvested catchments", echo = FALSE}
+p
+```
+
+# Discussion
+
+Benthic invertebrates are commonly used as indicators of stream water quality [@guilpart2012use]. *Baetis* sp. (Ephemeroptera) are used as stream quality indicators for catchments [@wallace1986response].
+
+# References {.unnumbered}

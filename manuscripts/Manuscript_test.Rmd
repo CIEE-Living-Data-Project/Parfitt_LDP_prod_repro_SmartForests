@@ -1,30 +1,100 @@
 ---
-title: "Manuscript Test"
-author: "Ian Parfitt"
-date: "17/09/2022"
-output: pdf_document
+title: "Manuscript Test" 
+author: "Ian Parfitt" 
+date: "'r Sys.Date()'"
+geometry: margin=1in
+header-includes:
+  - \usepackage{setspace}
+  - \doublespacing
+  - \usepackage{lineno}
+  - \linenumbers
+  - \usepackage{fontspec}       #can only be used with xelatex output
+  - \setmainfont{Times New Roman} # can only be used with xelatex output
+
+output: 
+  pdf_document: 
+    latex_engine: xelatex 
+# Other output options are: 
+# output: html_document
+# output: word_document
+
+## Specify your csl here. You can use local or remote (local is better?)
+## Sources of csl files:
+## <https://github.com/citation-style-language/styles-distribution>
+## or is it <https://github.com/citation-style-language/styles>
+## <https://www.zotero.org/styles>
+## <https://github.com/citation-style-language/styles/blob/master/ecology-letters.csl>
+## or is it <https://githubusercontent.com/citation-style-language/styles/master/ecology-letters.csl>
+
+csl: <https://www.zotero.org/styles/ecology-letters>
+bibliography: prod_repro.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(palmerpenguins)
+library(GGally)
+library(kableExtra)
 ```
 
-## R Markdown
+Title: The Title of this paper
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+First Author^1^; Second Author^2\*^
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+1.  Dept of
+2.  Environmental Institute
 
-```{r cars}
-summary(cars)
+\*Corresponding Author
+
+\newpage
+
+# Abstract
+
+# Introduction
+
+Some fake text [@guidoni-martins2021]
+
+# Methods
+
+$$
+H_x = -S[P(1_x) \times ln(P(1_x))]
+$$
+
+# Results
+
+# Discussion
+
+# References
+
+::: {#refs}
+:::
+
+# Tables
+
+Table 1. Caption
+
+```{r table_01, echo=FALSE, message=FALSE, warning=FALSE}
+
+penguin_sum <- penguins %>%
+  group_by(island, year) %>%
+  summarize(mean_body_mass_g = mean(body_mass_g, na.rm = TRUE)) %>%
+  ungroup()
+
+kable(x=penguin_sum,
+      col.names = c("Island", "Year", "Mean Body Mass (g)")) %>%
+  kable_styling(latex_options = "hold_position")
+# without the the held_position the table ends up at the top of the page
 ```
 
-## Including Plots
+# Figure Captions
 
-You can also embed plots, for example:
+# Figures
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r file = "..."}
+# this code chunk calls an external script
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# Appendices

@@ -38,4 +38,5 @@ dir.create("Beta_div/")
 # https://github.com/kguidonimartins/betadiv-enp.git
 usethis::create_from_github(repo_spec = "https://github.com/kguidonimartins/betadiv-enp.git",
                             destdir="Beta_div")
-system("cp -r Beta_div/betadiv-enp/data/* data/github/.")
+# system("cp -r Beta_div/betadiv-enp/data/* /data/github/.")
+file.copy("./Beta_div/betadiv-enp/data", "./data/github", recursive=TRUE)
