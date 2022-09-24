@@ -1,8 +1,21 @@
 # Code provided by Sam Strauss in LDP course
 # 20220917
+
+
+# Check for R packages to install
+
+RequiredPackages <- c("rdryad")
+for (i in RequiredPackages) { #Installs packages if not yet installed
+  if (!require(i, character.only = TRUE)) install.packages(i)}
+
+# Download libraries
 library(rdryad)
+
+# Create folder directories
+
 dir.create("data/")
 dir.create("scripts/")
+dir.create("images")
 dir.create("data/url")
 dir.create("data/dryad")
 dir.create("data/github")
