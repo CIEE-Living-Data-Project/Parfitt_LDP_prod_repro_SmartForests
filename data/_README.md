@@ -1,7 +1,6 @@
-# README
+# Smart Forest Draft Data
 
-## This folder contains preliminary data from the Smart Forest project:
+These files are preliminary data extracted from the project's postgres database in June of 2022. The eventual analysis may use data directly from the database or CSV "snapshots." 
 
-dev_site_info.csv : preliminary information about the sites, including location and elevation.
+Column headers were added and timestamp was revised to number of epoch seconds after experiencing too many challenges importing the original timestamp format into R.
 
-dev_weather_data0.csv: preliminary weather data for database design purposes - only includes some data from the first station.
