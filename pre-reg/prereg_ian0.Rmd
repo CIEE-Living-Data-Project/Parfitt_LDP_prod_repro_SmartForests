@@ -1,0 +1,91 @@
+---
+title           : "Draft Pre-Registration"
+shorttitle      : "Draft Pre-Reg"
+date            : "`r Sys.setlocale('LC_TIME', 'C'); format(Sys.time(), '%d\\\\ %B %Y')`"
+
+author: 
+  - name        : Ian Parfitt
+    affiliation : "1"
+
+affiliation:
+  - id          : 1
+    institution : University of British Columbia Okanagan
+
+output: prereg::prereg_pdf
+# output: pdf_document
+csl: <https://www.zotero.org/styles/ecology-letters>
+bibliography: fuelmoisture.bib
+---
+
+<!-- To keep pre-registrations to a reasonable length for readers, we recommend answers fit within a single page .pdf document, roughly 3200 characters. Read more about this here: https://aspredicted.org/messages/why_limits.php -->
+
+## Data collection
+
+<!-- Have any data been collected for this study already? (Note: "Yes" is not an accepted answer.) -->
+
+**It's complicated.** We have already collected some data but explain in Question 8 why readers may consider this a valid **pre**-registration nevertheless.
+
+## Hypothesis
+
+<!-- What's the main question being asked or hypothesis being tested in this study? -->
+
+The main hypothesis we will test is that weather data obtained from automated weather stations is correlated with the relative fuel moisture observed from fuel samples collected at weather station sites. We further hypothesize that fuel-weather indices can be created for each station site that can be used as inputs to the Canadian Fire Risk model.
+
+## Dependent variable
+
+<!-- Describe the key dependent variable(s) specifying how they will be measured. -->
+
+The dependent variable is the relative fuel moisture of live and dead fuel samples collected only transects established at each weather station. The samples are brought to the lab, weighed, dried for 24 hours in an oven, and then weighed again. The change in weight for each sample represents the relative moisture content of the sample.
+
+## Conditions
+
+<!-- How many and which conditions will participants be assigned to? -->
+
+We will establish weather stations in the wildland-urban interface in the Central Okanagan region that represent variation across management, forest type, and topographical (slope, aspect, elevation and slope position) dimensions.
+
+
+## Analyses
+
+<!-- Specify exactly which analyses you will conduct to examine the main question/hypothesis. -->
+
+Other researchers have used the stepwise regression method [@zhang_dynamic_2021] to analyse fuel moisture content response to meterological conditions. We have not yet selected our analysis methods, however. As discussed below, during the spring and summer of 2022 we assembled the weather stations (comprising temperature, precipitation, wind speed and direction, soil moisture and GNSS sensors; a small computer for data processing and a cellular transmission capability); developed data transmission, storage and visualization methods; and then established these stations at 57 field locations. We conducted site visits at these stations every two weeks during July and August with a total of approximately 3 visiits to each station. This trial will allow us to evaluate the weather station systems and our field logistics to refine our research design, including analysis methods, over the winter of 2022-23.
+
+## Outliers and exclusions
+
+<!-- Describe exactly how outliers will be defined and handled, and your precise rule(s) for excluding observations. -->
+
+We will establish several weather stations in proximity to existing stations operated by the provincial and federal government that we assume produce authoritative data. This will allow us to determine if our sensors are collecting similar data. If this is not the case, we may need to make alterations to the equipment or eliminate some or all data from some sensors. For instance in the summer of 2022, we observed that the temperature sensor was recording temperature spikes during the day that significantly exceeded the data collected at the government stations; we are exploring ways to shade or screen the sensor to reduce the effect of direct sunlight on the exposed temperature sensors. We may also be able to normalize the temperature readings through statistical methods.
+
+## Sample size
+
+<!-- How many observations will be collected or what will determine sample size? No need to justify decision, but be precise about _exactly_ how the number will be determined. -->
+
+In the summer of 2022 we established 57 stations. We will evaluate the spatial distribution of these stations and the refine the study design to ensure a statistically significant sample size for the summer of 2023 when we will collect data for hypothesis testing. We anticipate establishing between 100 and 200 stations in the summer of 2023.
+
+## Other
+
+<!-- Anything else you would like to pre-register? (e.g., secondary analyses, variables collected for exploratory purposes, unusual analyses planned?) -->
+
+We are developing dashboard web-apps to provide data visualization to our wildfire management and research partners. These may be adapted for wider public access.
+
+## Study type
+
+Finally. For record keeping purposes, please tell us the type of study you are pre-registering.
+
+This study is primarily directed towards improving the temporal and spatial resolution of wildfire fuel condition estimation. It has elements of experimentation (fuel and weather measurements across a range of sites in the Okanagan WUI) and model development.
+
+# References
+
+::: {#refs}
+:::
+## 
+
+
+
+```{=tex}
+\vspace{-2pc}
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{-1in}
+\setlength{\parskip}{8pt}
+```
+\noindent
